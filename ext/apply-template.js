@@ -2,7 +2,7 @@
 
 const map = require('map-stream');
 const handlebars = require('handlebars');
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 const fileExist = require('./file-exist');
 

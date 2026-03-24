@@ -3,7 +3,7 @@
 const Vinyl = require('vinyl');
 const through = require('./utils/through');
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs-extra');
 const fileExist = require('./file-exist');
 
 /**
