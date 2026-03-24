@@ -53,6 +53,7 @@ git push --set-upstream https://github.com/<your-usename>/<your-repository> mast
 
 The aim is to use https://github.com/wycats/handlebars.js[Handlebars] templates and https://asciidoctor.org/articles/asciidoctor.js/[Asciidoctor.js] to write dynamic pages such as articles. Several others extensions help to generate a rss file and a sitemap file.
 
+If you want to document your code using AsciiWriter you need to have Makefile (make) on your Unix-like system or use Batchscript "code.bat" if you are on Windows.
 
 == Settings
 

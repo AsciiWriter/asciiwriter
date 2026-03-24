@@ -2,6 +2,7 @@
 
 const map = require('map-stream');
 const moment = require('moment');
+
 // tag::options[]
 const asciidoctorOptions = {
   safe: 'safe',
@@ -27,7 +28,7 @@ const asciidoctorOptions = {
  */
 module.exports = function (options) {
 
-  const asciidoctor = require(`${options.path}node_modules/@asciidoctor/core/dist/node/asciidoctor`)();
+  var asciidoctor = require('@asciidoctor/core')()
 
   return map((file, next) => {
 

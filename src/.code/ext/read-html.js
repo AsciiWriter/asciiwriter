@@ -1,7 +1,7 @@
 'use strict';
 
 const map = require('map-stream');
-const fs = require('fs');
+const fs = require('fs-extra');
 const PluginError = require('plugin-error');
 const moment = require('moment');
 const path = require('path');

@@ -5,7 +5,7 @@ const through = require('./utils/through');
 const PluginError = require('plugin-error');
 const moment = require('moment');
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs-extra');
 const fileExist = require('./file-exist');
 
 /**

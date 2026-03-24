@@ -2,7 +2,7 @@
 
 const PluginError = require('plugin-error');
 const handlebars = require('handlebars');
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 const map = require('map-stream');
 
