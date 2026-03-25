@@ -1,6 +1,6 @@
 {
   "name": "asciiwriter",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Asciidoctor.js and Gulp based static site generator",
   "main": "index.js",
   "scripts": {
