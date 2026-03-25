@@ -1,6 +1,6 @@
 = AsciiWriter static site generator scaffold based on Gulp.js
 
-AsciiWriter is not a fullfeatured static site generator, it's a set of npm, JS, Gulpjs scripts that get you started with your own Asciidoctorjs based website. 
+AsciiWriter is not a full-fledged static site generator, it's a set of npm, JS, Gulpjs scripts that get you started with your own Asciidoctorjs based website. 
 There are plenty of static site generators.
 They are getting very popular in the techy world and most of them are using Markdown (simple rules to format text files).
 Even when taken into account how easy those are, it involves a certain workflow to setup and maintain.
@@ -10,18 +10,18 @@ The consistency of formatting is therefore very important.
 One such text markup type stands out as being superior and also easy to use.
 This is of course Asciidoc!
 Originally developed in Python, it has been rediscovered by Ruby community and gained a lot of traction in its Asciidoctor reimplementation. 
-Asciidoctorjs is JS-version of it, AsciiWriter uses it to create html pages with Gulpjs
+Asciidoctorjs is JS-version of it, AsciiWriter uses it to create html pages with Gulpjs.
 
-It is a fork of https://github.com/Dev-Mind/devmind-website/releases/tag/1.0.0["Dev-Mind website" Gulp scaffold (version 1.0)], it uses Node.js, Asciidoctorjs, Gulp and Handlebars templating engine. 
+AsciiWriter is a simplifiied fork of https://github.com/Dev-Mind/devmind-website/releases/tag/1.0.0["Dev-Mind website" scaffold], it uses Node.js, Asciidoctorjs, Gulp and Handlebars templating engine. 
 You can write pages with plain text using Asciidoc markup language, specifically https://www.asciidoctor.org[Asciidoctor] implementation. 
-Asciidoc is very similar to Markdown in spirit although it is not written in the same manner, the difference is that you don't  have to implement special helping functions to get important features. That makes Asciidoc text much more usable.
+AsciiDoc is very similar to Markdown in spirit although it is not written in the same manner, the difference is that you don't  have to implement special helping functions to get important features. That makes AsciiDoc text much more usable.
 
 Main pages are generated with ```Articles``` slug and with minimal editing you should be able to adapt it to for your own purpose. 
 To get familiar with Asciidoc, check out https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/[Asciidoc syntax]
 
 == Target audience
 
-AsciiWriter is for everyone who likes to write in plain text. 
+AsciiWriter is for everyone who likes to write in plain text and can use command line. 
 If you appreciate Asciidoc markup, but feel that https://antora.org/[Antora] is too overwhelming to use or too overkill for your project. 
 Another goal is to be accessible even to novice Node.js users and keep the possibilities open for easy modifications. 
 Because of this AsciiWriter tries to minimize the amount of dependencies and self documents important source files.
@@ -555,7 +555,7 @@ TODO
 
 
 == Compatibility
-Asciiwriter uses
+AsciiWriter uses
 
 * asciidoctor.js >= 2.0.0
 * gulp >= 4.0.0
