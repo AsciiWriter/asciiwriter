@@ -1,8 +1,20 @@
-= AsciiWriter static site generator
+= AsciiWriter static site generator scaffold based on Gulp.js
 
-AsciiWriter is a fork of https://github.com/Dev-Mind/devmind-website/releases/tag/1.0.0["Dev-Mind website" Gulp scaffold (version 1.0)], it uses Node.js, Asciidoctor.js and Handlebars templating engine. 
+AsciiWriter is not a fullfeatured static site generator, it's a set of npm, JS, Gulpjs scripts that get you started with your own Asciidoctorjs based website. 
+There are plenty of static site generators.
+They are getting very popular in the techy world and most of them are using Markdown (simple rules to format text files).
+Even when taken into account how easy those are, it involves a certain workflow to setup and maintain.
+On the other hand there is a variety of simple markup languages that can do the most common tasks and range from BBcode to Org-mode.
+It seems difficult to strike correct balance of usability, features and remain human readable.
+The consistency of formatting is therefore very important.
+One such text markup type stands out as being superior and also easy to use.
+This is of course Asciidoc!
+Originally developed in Python, it has been rediscovered by Ruby community and gained a lot of traction in its Asciidoctor reimplementation. 
+Asciidoctorjs is JS-version of it, AsciiWriter uses it to create html pages with Gulpjs
+
+It is a fork of https://github.com/Dev-Mind/devmind-website/releases/tag/1.0.0["Dev-Mind website" Gulp scaffold (version 1.0)], it uses Node.js, Asciidoctorjs, Gulp and Handlebars templating engine. 
 You can write pages with plain text using Asciidoc markup language, specifically https://www.asciidoctor.org[Asciidoctor] implementation. 
-It is very similar to Markdown in spirit although it is not written in the same manner, the difference is that you don't  have to implement special helping functions to get important features. That makes Asciidoc text much more usable.
+Asciidoc is very similar to Markdown in spirit although it is not written in the same manner, the difference is that you don't  have to implement special helping functions to get important features. That makes Asciidoc text much more usable.
 
 Main pages are generated with ```Articles``` slug and with minimal editing you should be able to adapt it to for your own purpose. 
 To get familiar with Asciidoc, check out https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/[Asciidoc syntax]
@@ -11,9 +23,9 @@ To get familiar with Asciidoc, check out https://asciidoctor.org/docs/asciidoc-s
 
 AsciiWriter is for everyone who likes to write in plain text. 
 If you appreciate Asciidoc markup, but feel that https://antora.org/[Antora] is too overwhelming to use or too overkill for your project. 
-Another goal is to be accessible even to novice Node.js users and keep the possibilities for easy modifications. 
-Because of this AsciiWriter tries  to minimize the amount of dependencies and self documenting source files.
-Currently the is no incremental build or preview process in AsciiWriter static site generator.
+Another goal is to be accessible even to novice Node.js users and keep the possibilities open for easy modifications. 
+Because of this AsciiWriter tries to minimize the amount of dependencies and self documents important source files.
+Currently the is no incremental build or preview process in AsciiWriter static site generator and there is no plan for it.
 
 Clone using git:
 
@@ -33,7 +45,7 @@ Sass styless can be generated with:
 npm run default:sass
 ```
 
-Once your pages are generated navigate to the ```build/docs``` directory and initialize git:
+Once your pages are generated navigate to the ```build/docs``` directory and initialize your git project:
 
 ```
 git init 
@@ -51,9 +63,9 @@ and set your upstream branch
 git push --set-upstream https://github.com/<your-usename>/<your-repository> master
 ```
 
-The aim is to use https://github.com/wycats/handlebars.js[Handlebars] templates and https://asciidoctor.org/articles/asciidoctor.js/[Asciidoctor.js] to write dynamic pages such as articles. Several others extensions help to generate a rss file and a sitemap file.
+The aim is to use https://handlebarsjs.com/[Handlebars] templates and https://asciidoctor.org/articles/asciidoctor.js/[Asciidoctor.js] to write your articles, included extensions help to generate a rss file and a sitemap file.
 
-If you want to document your code using AsciiWriter you need to have Makefile (make) on your Unix-like system or use Batchscript "code.bat" if you are on Windows.
+If you want to document your code using AsciiWriter you need to have Makefile (make) on your Linux/Unix-like system or use Batchscript "code.bat" if you are on Windows.
 
 == Settings
 
@@ -62,20 +74,148 @@ Most of the settings are stored within link:./gulpfile.js[gulpfile.js]. If you e
 == Keeping the documentation up to date
 
 To keep the documentation current AsciiWriter mirrors the source files into ```src/articles/code```.
-In the root of the file system there are 2 scripts awailable to keep it synchronized, on Windows ```code.bat``` uses Robocopy to mirror files. On Linux and Unix-like systems you need install ```rsync``` to keep the files mirrored. 
+In the root of the file system there are 2 scripts awailable to keep it synchronized, on Windows ```code.bat``` uses Robocopy to mirror files. On Linux and Unix-like systems you also need install ```rsync``` to keep the files mirrored. 
+
+== AsciiDoc is awesome!
+
+Once you used Markdown for something other than blogging it is remarkable how limiting it can be.
+The natural thought then to use static site generator to get some sort of structure in the documents.
+Many static site generators often introduce their own markup language: usually a dialect of Markdown, which makes the whole process and your articles/documents non-portable.
+
+In AsciiDoc, you are writing plain text, that means one could use version control system like {Git}.
+
+:git: http://www.git-scm.com/[Git]
+
+Not only will you be able to find out how your writing has progressed but also specifically go back in time and see the exact changes that were made.
+
+Another big advantage of writing in AsciiDoc-format it is very easy to comment out lines (and hide from the final document), whole sentences can be commented out by adding // at the start of the line.
+Alternatively comment out whole paragraphs by placing four slashed lines, at the beginning and the end, like this:
+
+....
+////
+I commented-out
+this text with four slashes.
+
+And the result is that
+this whole chunk of text gets hidden!
+/////
+....
+
+If you writing a moderately long document chances are that you would be better of by splitting your document in appropriate chunks and putting those in different files.
+By doing this you can get rid of mental burden and concentrate on the part that you write for the moment.
+With Git you still get the tracking on changes on all of your *.adoc* files in the folder.
+By using *include directive* you can combine the parts of your document in the output at any time (you get one file in combined html, pdf etc).
+
+#_include::included_file.adoc[]_#
+
+If one for some reason wishes to include only part of the file, you can specify the line range:
+
+#_include::included_file.adoc[lines=7..-1]_#
+
+In this case it is from line 7 to the end of the document.
+In programming terms -1 here represents the last line, this is practical: think if we would start counting from the end without knowing the total number of lines.
+Just don't use other negative numbers!
+
+Line numbering quickly becomes obsolete if you change text in *included_file.adoc* so you could put *tag=mymethod* in those square brackets instead of *lines=7..-1*.
+Where my method is the name of the tag that you choose to describe this specific part of the text.
+In order for this to be included you need to add comments around the part that you wish to include, like this:
+....
+// tag::mymethod[]
+Here I decribe my new method description
+bla bla bla
+// end::mymethod[]
+....
+
+Now, by doing this - even if it is moved to other part of the included document it will still be added to the final output.
+It is especially useful when you write code documentation (search on asciidoctor webpage for how to include code snippets).
+
+What if I describe my new method then write something else and then continue to describe my methods?
+One could simply add another chunk and it will also be included.
+
+....
+// tag::mymethod[]
+
+Here I continue to decribe my new method and it gets included.
+Isn't it nice?!
+
+// end::mymethod[]
+....
+
+
+
+== Asciidoctor to the rescue, AsciiDoc is the best thing since sliced bread!
+
+So why is it better to use AsciiDoc?
+Markdown has a lot of pitfalls: it mixes html tags and its own formatting in a way that it becomes difficult to use.
+For example comments in Markdown:
+....
+<!-- comments here... -->
+....
+
+This requires you to press different keys, it takes too much effort to jot down your thoughts in the middle of the text using Markdown.
+AsciiDoc on the other hand makes writing fun again!
+
+== Writing, from the ground up
+
+When you write something, the text should be in focus of your attention.
+Abstracting it away in meaningless formatting before it's finished is pointless.
+One of the best tips for writing that I overheard comes from one of the Asciidoctor presentations:
+if you write the document in markup like Asciidoc, write each sentence on separate line.
+That forces you to have short clear meanings and becomes much easier to read.
+For this to work something like Asciidoctor is essential since it has so many built in features.
+In order to break text into new paragraph you need to leave one empty line.
+So the result would be nice fluent text, but when you work on it you can still clearly se where each sentence begins.
+
+The syntax is extremely simple and takes just a couple of minutes to get going:
+https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/
+
+Here is how you can create tables:
+....
+.My table
+[]
+|===
+| Column title A | Column title B | Column title C
+
+| item A1        | item B1        | item C1
+
+| item A2        | item B2        | item C2
+
+| item A1        | item B3        | item C3
+|===
+....
+It results in this:
+
+.My table
+[]
+|===
+| Column title A | Column title B | Column title C
+
+| item A1        | item B1        | item C1
+
+| item A2        | item B2        | item C2
+
+| item A3        | item B3        | item C3
+|===
+
+It's quite simple really and self explanatory. Square brackets are optional, you can put special parameters there.
+
+
+footnotes:
+
+If you want to see how this text is formatted when it looks like *.adoc* file you can find it https://raw.githubusercontent.com/asciiwriter/asciiwriter/master/README.adoc[here].
 
 == TODO
 
 Create AsciiWriter styleguide
 included files need to have their path partially specified e.g ```:sass: src/sass/```
 
-Provide good templates
+Provide some good Handlebarjs templates
 
 === apply-template
 
 `apply-template` extension specified in link:./index.js[index.js] (extApplyTemplate) sets the handlebar templates on a file stream. Templates are applied after `read-html` and `read-asciidoctor` extensions create the `templateModel` which is then sent to Handlebars where the template is used.
 
-*Example of template usage*
+*Example of template use*
 [source,javascript]
 ----
 const HANDLEBARS_PARTIALS = [
@@ -95,7 +235,7 @@ The templateModel has several attributes. For more details read the section abou
 === convert-to-html
 Used to change Asciidoc file extension to html
 
-*Example of usage*
+*Example of use*
 [source,javascript]
 ----
 gulp.task('articles-indexing', () =>
@@ -109,7 +249,7 @@ gulp.task('articles-indexing', () =>
 === convert-to-json
 Used to generate a JSON file with data read in HTML or Asciidoc file
 
-*Example of usage*
+**Use example*
 [source,javascript]
 ----
 gulp.task('articles-indexing', () =>
@@ -127,13 +267,13 @@ The example JSON file:
 ----
 [
   {
-      "strdate": "28/09/2018",
-      "revdate": "28/09/2018",
-      "doctitle": "Expérience de Guillaume EHRET",
-      "description": "CV numérique de Guillaume EHRET fondateur de Dev-Mind",
+      "strdate": "28/06/2026",
+      "revdate": "28/06/2026",
+      "doctitle": "Experience of writing Asciidoc files",
+      "description": "Asciidoctor and Asciidoctorjs to the resque!",
       "keywords": [
-        "Dev-mind",
-        "Java",
+        "Asciidoctorjs",
+        "Asciidoc",
         "JavaScript",
         "HTML",
         "CSS"
@@ -164,7 +304,7 @@ gulp.task('articles-rss', () =>
 === convert-to-sitemap
 Search engines will index your static website using `sitemap.xml` which maps the pages of your site. `convert-to-sitemap` extension is used to generate `sitemap.xml`.
 
-*Example*
+*Example of Gulp convertion*
 [source,javascript]
 ----
 gulp.task('sitemap', () =>
@@ -184,11 +324,9 @@ Here's the example for `build/.tmp/articlesindex.json` file:
   {
       "strdate": "28/09/2018",
       "revdate": "28/09/2018",
-      "doctitle": "Expérience de Guillaume EHRET",
-      "description": "CV numérique de Guillaume EHRET fondateur de Dev-Mind",
+      "doctitle": "Experience in Web technologies",
+      "description": "Describes some of the experiences in website building",
       "keywords": [
-        "Dev-mind",
-        "Java",
         "JavaScript",
         "HTML",
         "CSS"
@@ -206,7 +344,7 @@ If some file is not available an **exception** is thrown that warns you about it
 
 `verify-files` extension will return true if the file exists
 
-*Example of usage*
+*Use example*
 [source,javascript]
 ----
 const page = path.resolve(__dirname, options.path, file.path);
@@ -292,13 +430,13 @@ Pages created in AsciiWriter need to be in Asciidoc format and has to specify so
 
 [source, asciidoc]
 ----
-:doctitle: Do your Articles yourself
-:description: Comment construire le articles parfait
-:keywords: Web, Articles, Asciidoc, Asciidoctor, CMS, Clever Cloud
-:author: Guillaume EHRET - Dev-Mind
-:revdate: 2018-01-02
+:doctitle: Publish Asciidoc Articles using Gulp
+:description: Asciidoctorjs based static site scaffold
+:keywords: Web, Articles, Asciidoc, Asciidoctor, Asciidoctorjs, Gulp, Nodejs
+:author: ojn
+:revdate: 2020-01-01
 :category: Web
-:teaser: Début 2017, j'ai choisi de migrer mon articles de Articlesspot vers une solution personnalisée à base de Asciidoc. J'ai continué à faire évoluer mon site web pour enfin arriver à une solution qui me satisfait.
+:teaser: Created with AsciiWriter and uses Asciidoc format.
 :imgteaser: ../../img/articles/2018/siteweb_00.jpg
 
 Start of your article
@@ -325,7 +463,7 @@ In your handlebar template you can use the templateModel property values. For ex
 * a templateModel, a structure JSON used after with handlebar and
 * an indexData object used to build an index file used by other extensions
 
-*Example of usage*
+*Use example*
 [source,javascript]
 ----
 gulp.task('html-template', () =>
@@ -415,25 +553,13 @@ TODO
 TODO
 
 
-== Dev & prod
-
-In production you have to activate the mode prod in environment variable. For more detail you can read http://expressjs.com/en/advanced/best-practice-performance.html#set-node_env-to-production
-
-With systemd, use the Environment directive in your unit file. For example:
-
-[source,shell]
-----
-# /etc/systemd/system/myservice.service
-Environment=NODE_ENV=production
-----
-
-If we are not in production the templateModel used in handlebar templates contains a property `modeDev` to true (see section about `read-html` or `read-asciidoctor` extension)
 
 == Compatibility
-You have to use a
+Asciiwriter uses
 
-* node version >= 10.0
+* asciidoctor.js >= 2.0.0
 * gulp >= 4.0.0
+* node version >= 10.0
 
 == License
 AsciiWriter is released under the MIT license.
