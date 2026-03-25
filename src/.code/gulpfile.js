@@ -1,7 +1,7 @@
 'use strict';
 // tag::require[]
 const gulp = require('gulp');
-const sass = require('gulp-dart-sass');
+const sass = require('gulp-sass');
 const website = require('./index')({path: '../'});
 // end::require[]
 

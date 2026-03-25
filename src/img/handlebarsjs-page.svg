@@ -4,7 +4,7 @@
    id="svg2"
    viewBox="0 0 128 128"
    inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
-   sodipodi:docname="page.svg"
+   sodipodi:docname="handlebarsjs-page.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -27,8 +27,8 @@
      id="namedview33"
      showgrid="false"
      inkscape:zoom="2.6074563"
-     inkscape:cx="155.89907"
-     inkscape:cy="95.878886"
+     inkscape:cx="156.28258"
+     inkscape:cy="95.878884"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -63,7 +63,9 @@
        id="9">
       <stop
          stop-color="#fd0"
-         id="K" />
+         id="K"
+         offset="0"
+         style="stop-color:#ff4400;stop-opacity:1;" />
       <stop
          stop-color="#e3ad00"
          id="L"
