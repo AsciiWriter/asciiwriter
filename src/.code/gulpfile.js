@@ -1,7 +1,7 @@
 'use strict';
 // tag::require[]
 const gulp = require('gulp');
-const sass = require('gulp-sass');
+const sass = require('gulp-sass')(require('sass'));
 const website = require('./index')({path: '../'});
 // end::require[]
 
@@ -125,19 +125,19 @@ gulp.task('sitemap', () =>
 
 // tag::check[]
 gulp.task('check', () =>
-  gulp.src([ // We must have a articles index page
+  gulp.src([ // Check for articles index
              'build/.tmp/articlesindex.json',
-             // We must have a page index page
+             // Check for page index
              'build/.tmp/pageindex.json',
-             // We must have a RSS file
+             // Check for RSS file
              'build/docs/rss/articles.xml',
-             // We must have a site map
+             // Check for site map
              'build/docs/sitemap.xml',
-             // We must have an HTML page generated
+             // Check for HTML index page
              'build/docs/index.html',
-             // We must have an 404 HTML page generated
+             // Check for 404 HTML page
              'build/docs/404.html',
-             // We must have an pure teplate page generated
+             // Check for pure template page
              'build/docs/articles.html'
            ])
       .pipe(website.extVerifyFiles())
