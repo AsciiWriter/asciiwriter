@@ -1,6 +1,6 @@
 {
-  "name": "AsciiWriter",
-  "version": "0.0.1",
+  "name": "asciiwriter",
+  "version": "0.0.2",
   "description": "Asciidoctor.js and Gulp based static site generator",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AsciiWriter/AsciiWriter.git"
+    "url": "git+https://github.com/AsciiWriter/asciiwriter.git"
   },
   "keywords": [
     "website",
@@ -30,9 +30,9 @@
   "author": "ojn",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AsciiWriter/AsciiWriter/issues"
+    "url": "https://github.com/AsciiWriter/asciiwriter/issues"
   },
-  "homepage": "https://github.com/AsciiWriter/AsciiWriter#readme",
+  "homepage": "https://github.com/AsciiWriter/asciiwriter#readme",
   "devDependencies": {
     "@asciidoctor/core": "^3.0.4",
     "cheerio": "^1.2.0",
