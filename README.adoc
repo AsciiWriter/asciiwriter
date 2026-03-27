@@ -1,14 +1,12 @@
 = AsciiWriter static site generator scaffold based on Gulp.js
 
-AsciiWriter is not a full-fledged static site generator, it's a set of npm, JS, Gulpjs scripts that get you started with your own Asciidoctorjs based website. 
+AsciiWriter is not a full-fledged static site generator, it's a set of npm, JS, Gulpjs scripts that get you started with your own Asciidoctorjs based website using Handlebars templates. 
 There are plenty of static site generators, most of them are using Markdown (simple rules to format text files).
 But there is a wide variety of simple markup languages that can do the most common tasks and range from BBcode to Org-mode.
 It seems difficult to strike correct balance of usability, features and remain human readable.
-One such text markup language stands out as being consistant and also easy to use.
+One such text markup language stands out as being consistent and also easy to use.
 This is of course Asciidoc!
-Originally developed in Python, it has been rediscovered by Ruby community and gained a lot of traction in its Asciidoctor reimplementation. 
-Asciidoctorjs is JS-version of it, AsciiWriter uses it to create html pages with Gulpjs.
-
+Originally developed in Python, it has been rediscovered by Ruby community and gained a lot of traction in its Asciidoctor reimplementation, Asciidoctorjs is a JS transpiled version of it.
 AsciiWriter is a simplifiied fork of https://github.com/Dev-Mind/devmind-website/releases/tag/1.0.0["Dev-Mind website" scaffold], it uses Node.js, Asciidoctorjs, Gulp and Handlebars templating engine. 
 You can write pages with plain text using Asciidoc markup language, specifically https://www.asciidoctor.org[Asciidoctor] implementation. 
 AsciiDoc is very similar to Markdown in spirit although it is not written in the same manner, the difference is that you don't  have to implement special helping functions to get important features. That makes AsciiDoc text much more usable.
@@ -18,7 +16,7 @@ To get familiar with Asciidoc, check out https://asciidoctor.org/docs/asciidoc-s
 
 == Target audience
 
-AsciiWriter is for everyone who likes to write in plain text and can use command line. 
+AsciiWriter is for everyone who likes to write in plain text and update their site using command line. 
 If you appreciate Asciidoc markup, but feel that https://antora.org/[Antora] is too overwhelming to use or too overkill for your project. 
 Another goal is to be accessible even to novice Node.js users and keep the possibilities open for easy modifications. 
 Because of this AsciiWriter tries to minimize the amount of dependencies and self documents important source files.
@@ -36,6 +34,12 @@ To create HTML files, simply run npm scripts:
 npm install && npm run build
 ```
 
+If you prefer to use pnpm:
+
+```
+pnpm install && npm run build
+```
+
 Sass styless can be generated with:
 
 ```
@@ -51,7 +55,7 @@ git init
 Add and commit your changes 
 ```
 git add .
-git commit -m  "Some changes description" 
+git commit -m  "Some changes, description" 
 ```
 
 and set your upstream branch
@@ -66,7 +70,7 @@ If you want to document your code using AsciiWriter you need to have Makefile (m
 
 == Settings
 
-Most of the settings are stored within link:./gulpfile.js[gulpfile.js]. If you expand the site beyond simple article writing, then you might need to change some other files as well.
+Most of the settings are stored within link:https://github.com/AsciiWriter/asciiwriter/blob/master/gulpfile.js[gulpfile.js]. If you expand the site beyond simple article writing, then you might need to change some other files as well.
 
 == Keeping the documentation up to date
 
@@ -137,7 +141,6 @@ Isn't it nice?!
 
 // end::mymethod[]
 ....
-
 
 
 == Asciidoctor to the rescue, AsciiDoc is the best thing since sliced bread!
