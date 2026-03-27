@@ -13,19 +13,29 @@
 :src: src/
 :toc:
 
-You can write pages with plain text using Asciidoc markup language, specifically https://www.asciidoctor.org[Asciidoctor] implementation. 
-It is very similar to Markdown in spirit although it is not written in the same manner, the difference is that you don't  have to implement special helping functions to get important features. That makes Asciidoc text much more usable.
+AsciiWriter is not a full-fledged static site generator, it's a set of npm, JS, Gulpjs scripts that get you started with your own Asciidoctorjs based website. 
+There are plenty of static site generators, most of them are using Markdown (simple rules to format text files).
+But there is a wide variety of simple markup languages that can do the most common tasks and range from BBcode to Org-mode.
+It seems difficult to strike correct balance of usability, features and remain human readable.
+One such text markup language stands out as being consistant and also easy to use.
+This is of course Asciidoc!
+Originally developed in Python, it has been rediscovered by Ruby community and gained a lot of traction in its Asciidoctor reimplementation. 
+Asciidoctorjs is JS-version of it, AsciiWriter uses it to create html pages with Gulpjs.
 
-Main pages are generated with `Articles` slug and with minimal editing you should be able to adapt it to for your own purpose. 
+AsciiWriter is a simplifiied fork of https://github.com/Dev-Mind/devmind-website/releases/tag/1.0.0["Dev-Mind website" scaffold], it uses Node.js, Asciidoctorjs, Gulp and Handlebars templating engine. 
+You can write pages with plain text using Asciidoc markup language, specifically https://www.asciidoctor.org[Asciidoctor] implementation. 
+AsciiDoc is very similar to Markdown in spirit although it is not written in the same manner, the difference is that you don't  have to implement special helping functions to get important features. That makes AsciiDoc text much more usable.
+
+Main pages are generated with ```Articles``` slug and with minimal editing you should be able to adapt it to for your own purpose. 
 To get familiar with Asciidoc, check out https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/[Asciidoc syntax]
 
 == Target audience
 
-AsciiWriter is for everyone who likes to write in plain text. 
+AsciiWriter is for everyone who likes to write in plain text and can use command line. 
 If you appreciate Asciidoc markup, but feel that https://antora.org/[Antora] is too overwhelming to use or too overkill for your project. 
-Another goal is to be accessible even to novice Node.js users and keep the possibilities for easy modifications. 
-Because of this AsciiWriter tries  to minimize the amount of dependencies and self documenting source files.
-Currently the is no incremental build or preview process in AsciiWriter static site generator.
+Another goal is to be accessible even to novice Node.js users and keep the possibilities open for easy modifications. 
+Because of this AsciiWriter tries to minimize the amount of dependencies and self documents important source files.
+Currently the is no incremental build or preview process in AsciiWriter static site generator and there is no plan for it.
 
 Clone using git:
 
@@ -39,11 +49,13 @@ To create HTML files, simply run npm scripts:
 npm install && npm run build
 ```
 
+Sass styless can be generated with:
+
 ```
 npm run default:sass
 ```
 
-Once your pages are generated navigate to the `build/docs` directory and initialize git:
+Once your pages are generated navigate to the ```build/docs``` directory and initialize your git project:
 
 ```
 git init 
@@ -61,98 +73,503 @@ and set your upstream branch
 git push --set-upstream https://github.com/<your-usename>/<your-repository> master
 ```
 
-The aim is to use https://github.com/wycats/handlebars.js[Handlebars] templates and https://asciidoctor.org/articles/asciidoctor.js/[Asciidoctor.js] to write dynamic pages such as articles. Several others extensions help to generate a rss file and a sitemap file.
+The aim is to use https://handlebarsjs.com/[Handlebars] templates and https://asciidoctor.org/articles/asciidoctor.js/[Asciidoctor.js] to write your articles, included extensions help to generate a rss file and a sitemap file.
 
+If you want to document your code using AsciiWriter you need to have Makefile (make) on your Linux/Unix-like system or use Batchscript "code.bat" if you are on Windows.
 
 == Settings
 
 Most of the settings are stored within link:./gulpfile.js[gulpfile.js]. If you expand the site beyond simple article writing, then you might need to change some other files as well.
 
-== Site URL
-
-To customize the URL for your website you simply change the header _html_header.hbs in the templates directory
-
-*To change the URL for RSS feed and canonical link in HTML*
-[source,html]
-----
-include::{src}templates/_html_header_url.hbs[tags=hbs-url]
-----
-
-Change the URLs in rss.json
-
-[source,json]
-----
-include::{src}metadata/rss.json[]
-----
-
-and sitemap.json as well
-
-[source,json]
-----
-include::{src}metadata/sitemap.json[]
-----
-
 == Keeping the documentation up to date
 
-To keep the documentation current AsciiWriter mirrors the source files into `src/articles/code`.
-In the root of the file system there are 2 scripts awailable to keep it synchronized, on Windows `code.bat` uses Robocopy to mirror files. On Linux and Unix-like systems you need install `rsync` to keep the files mirrored. 
+To keep the documentation current AsciiWriter mirrors the source files into ```src/.code```.
+In the root of the file system there are 2 scripts awailable to keep it synchronized, on Windows ```code.bat``` uses Robocopy to mirror files. On Linux and Unix-like systems you also need install ```rsync``` to keep the files mirrored. 
 
-`apply-template` ext specified in link:./index.js[index.js] (extApplyTemplate) sets the handlebar templates on a file stream. Templates are applied after `read-html` and `read-asciidoctor` exts create the `templateModel` which is then sent to Handlebars where the template is used.
+== AsciiDoc is awesome!
 
-*Gulpfile require*
+Once you used Markdown for something other than blogging it is remarkable how limiting it can be.
+The natural thought then to use static site generator to get some sort of structure in the documents.
+Many static site generators often introduce their own markup language: usually a dialect of Markdown, which makes the whole process and your articles/documents non-portable.
+
+In AsciiDoc, you are writing plain text, that means one could use version control system like {Git}.
+
+:git: http://www.git-scm.com/[Git]
+
+Not only will you be able to find out how your writing has progressed but also specifically go back in time and see the exact changes that were made.
+
+Another big advantage of writing in AsciiDoc-format it is very easy to comment out lines (and hide from the final document), whole sentences can be commented out by adding // at the start of the line.
+Alternatively comment out whole paragraphs by placing four slashed lines, at the beginning and the end, like this:
+
+....
+////
+I commented-out
+this text with four slashes.
+
+And the result is that
+this whole chunk of text gets hidden!
+/////
+....
+
+If you writing a moderately long document chances are that you would be better of by splitting your document in appropriate chunks and putting those in different files.
+By doing this you can get rid of mental burden and concentrate on the part that you write for the moment.
+With Git you still get the tracking on changes on all of your *.adoc* files in the folder.
+By using *include directive* you can combine the parts of your document in the output at any time (you get one file in combined html, pdf etc).
+
+#_include::included_file.adoc[]_#
+
+If one for some reason wishes to include only part of the file, you can specify the line range:
+
+#_include::included_file.adoc[lines=7..-1]_#
+
+In this case it is from line 7 to the end of the document.
+In programming terms -1 here represents the last line, this is practical: think if we would start counting from the end without knowing the total number of lines.
+Just don't use other negative numbers!
+
+Line numbering quickly becomes obsolete if you change text in *included_file.adoc* so you could put *tag=mymethod* in those square brackets instead of *lines=7..-1*.
+Where my method is the name of the tag that you choose to describe this specific part of the text.
+In order for this to be included you need to add comments around the part that you wish to include, like this:
+....
+// tag::mymethod[]
+Here I decribe my new method description
+bla bla bla
+// end::mymethod[]
+....
+
+Now, by doing this - even if it is moved to other part of the included document it will still be added to the final output.
+It is especially useful when you write code documentation (search on asciidoctor webpage for how to include code snippets).
+
+What if I describe my new method then write something else and then continue to describe my methods?
+One could simply add another chunk and it will also be included.
+
+....
+// tag::mymethod[]
+
+Here I continue to decribe my new method and it gets included.
+Isn't it nice?!
+
+// end::mymethod[]
+....
+
+
+
+== Asciidoctor to the rescue, AsciiDoc is the best thing since sliced bread!
+
+So why is it better to use AsciiDoc?
+Markdown has a lot of pitfalls: it mixes html tags and its own formatting in a way that it becomes difficult to use.
+For example comments in Markdown:
+....
+<!-- comments here... -->
+....
+
+This requires you to press different keys, it takes too much effort to jot down your thoughts in the middle of the text using Markdown.
+AsciiDoc on the other hand makes writing fun again!
+
+== Writing, from the ground up
+
+When you write something, the text should be in focus of your attention.
+Abstracting it away in meaningless formatting before it's finished is pointless.
+One of the best tips for writing that I overheard comes from one of the Asciidoctor presentations:
+if you write the document in markup like Asciidoc, write each sentence on separate line.
+That forces you to have short clear meanings and becomes much easier to read.
+For this to work something like Asciidoctor is essential since it has so many built in features.
+In order to break text into new paragraph you need to leave one empty line.
+So the result would be nice fluent text, but when you work on it you can still clearly se where each sentence begins.
+
+The syntax is extremely simple and takes just a couple of minutes to get going:
+https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/
+
+Here is how you can create tables:
+....
+.My table
+[]
+|===
+| Column title A | Column title B | Column title C
+
+| item A1        | item B1        | item C1
+
+| item A2        | item B2        | item C2
+
+| item A1        | item B3        | item C3
+|===
+....
+It results in this:
+
+.My table
+[]
+|===
+| Column title A | Column title B | Column title C
+
+| item A1        | item B1        | item C1
+
+| item A2        | item B2        | item C2
+
+| item A3        | item B3        | item C3
+|===
+
+It's quite simple really and self explanatory. Square brackets are optional, you can put special parameters there.
+
+
+footnotes:
+
+If you want to see how this text is formatted when it looks like *.adoc* file you can find it https://raw.githubusercontent.com/asciiwriter/asciiwriter/master/README.adoc[here].
+
+== TODO
+
+Create AsciiWriter styleguide
+included files need to have their path partially specified e.g ```:sass: src/sass/```
+
+Provide some good Handlebarjs templates
+
+=== apply-template
+
+`apply-template` extension specified in link:./index.js[index.js] (extApplyTemplate) sets the handlebar templates on a file stream. Templates are applied after `read-html` and `read-asciidoctor` extensions create the `templateModel` which is then sent to Handlebars where the template is used.
+
+*Example of template use*
 [source,javascript]
 ----
-include::{code}gulpfile.js[tags=require]
+const HANDLEBARS_PARTIALS = [
+  {key: '_html_header', path: 'src/templates/_html_header.hbs'},
+  {key: '_html_footer', path: 'src/templates/_html_footer.hbs'}
+];
+
+gulp.task('html-template', () =>
+  gulp.src(`src/html/**/*.html`)
+      .pipe(website.readHtml())
+      .pipe(website.applyTemplate(`src/templates/articles.hbs`, HANDLEBARS_PARTIALS))
+      .pipe(gulp.dest('build/docs')));
+----
+
+The templateModel has several attributes. For more details read the section about `read-html` or `read-asciidoctor` extension.
+
+=== convert-to-html
+Used to change Asciidoc file extension to html
+
+*Example of use*
+[source,javascript]
+----
+gulp.task('articles-indexing', () =>
+  gulp.src('src/articles/**/*.adoc')
+      .pipe(website.readAsciidoc())
+      .pipe(website.convertToHtml())
+      .pipe(gulp.dest('build/.tmp'))
+);
+----
+
+=== convert-to-json
+Used to generate a JSON file with data read in HTML or Asciidoc file
+
+**Use example*
+[source,javascript]
+----
+gulp.task('articles-indexing', () =>
+  gulp.src('src/articles/**/*.adoc')
+      .pipe(website.readAsciidoc())
+      .pipe(website.convertToHtml())
+      .pipe(website.convertToJson('articlesindex.json'))
+      .pipe(gulp.dest('build/.tmp'))
+);
+----
+
+The example JSON file:
+
+[source,javascript]
+----
+[
+  {
+      "strdate": "28/06/2026",
+      "revdate": "28/06/2026",
+      "doctitle": "Experience of writing Asciidoc files",
+      "description": "Asciidoctor and Asciidoctorjs to the resque!",
+      "keywords": [
+        "Asciidoctorjs",
+        "Asciidoc",
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ],
+      "filename": "extra",
+      "priority": 0.6,
+      "dir": "/"
+    }
+    ...
+]
+----
+
+=== read-index and convert-to-rss
+`read-index` extension parses files and generates a JSON list, 
+then `convert-to-rss` extension transforms this JSON list with metadata into RSS file called `articles.xml`:
+
+*Example in gulpfile*
+[source,javascript]
+----
+gulp.task('articles-rss', () =>
+  gulp.src('build/.tmp/articlesindex.json')
+      .pipe(website.readIndex())
+      .pipe(website.convertToRss('articles.xml'))
+      .pipe(gulp.dest('build/docs/rss'))
+);
+----
+
+=== convert-to-sitemap
+Search engines will index your static website using `sitemap.xml` which maps the pages of your site. `convert-to-sitemap` extension is used to generate `sitemap.xml`.
+
+*Example of Gulp convertion*
+[source,javascript]
+----
+gulp.task('sitemap', () =>
+  gulp.src(['build/.tmp/articlesindex.json', 'build/.tmp/pageindex.json'])
+      .pipe(website.readIndex())
+      .pipe(website.convertToSitemap())
+      .pipe(gulp.dest('build/docs'))
+);
+----
+In this example Gulp takes 2 index written in Json (`articlesindex` and `pageindex`). Extension `read-index` helps to read them, and send them to the extension `convert-to-sitemap` which is able to generate the file  `sitemap.xml`
+
+Here's the example for `build/.tmp/articlesindex.json` file:
+
+[source,javascript]
+----
+[
+  {
+      "strdate": "28/09/2018",
+      "revdate": "28/09/2018",
+      "doctitle": "Experience in Web technologies",
+      "description": "Describes some of the experiences in website building",
+      "keywords": [
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ],
+      "filename": "extra",
+      "priority": 0.6,
+      "
+  }
+]
+----
+
+=== verify-files
+`verify-files` extension is used to verify that the necessary files are present in your project. 
+If some file is not available an **exception** is thrown that warns you about it.
+
+`verify-files` extension will return true if the file exists
+
+*Use example*
+[source,javascript]
+----
+const page = path.resolve(__dirname, options.path, file.path);
+if(!fileExist(page)){
+  throw new PluginError('verify-files', `File ${file.path} does not exist!`);
+}
 ----
 
 *Example of usage*
 [source,javascript]
 ----
-include::{code}gulpfile.js[tags=hbs-partials]
+gulp.task('check', () =>
+  gulp.src([ 'build/.tmp/articlesindex.json',
+             'build/.tmp/pageindex.json',
+             'build/docs/rss/articles.xml',
+             'build/docs/sitemap.xml'])
+      .pipe(website.extVerifyFiles())
+      .pipe(gulp.dest('build/check'))
+);
 ----
 
-The templateModel has several attributes. For more details read the section about `read-html` or `read-asciidoctor` extension.
+=== highlight-code
+`highlight-code` extension is used to highlight the source code defined in yours HTML pages.
 
-Articles indexing task reads Asciidoc files converts those to html format and changes file extension to html. 
-Convert to JSON saves the data in a temporary json listing.
+*Example of usage*
+If your code is defined between these markups
 
-*Articles indexing*
 [source,javascript]
 ----
-include::{code}gulpfile.js[tags=articles-indexing]
+<pre class="highlight">
+    <code class="language-html" data-lang="java">
+        // My code
+    </code>
+</pre>
 ----
 
-The list of 
-
-*Articles list*
+You can use this extension like this
 [source,javascript]
 ----
-include::{code}gulpfile.js[tags=articles-list]
+gulp.task('articles-page', (cb) => {
+  gulp.src('src/articles/**/*.adoc')
+      .pipe(website.readHtml())
+      .pipe(website.highlightCode({selector: 'pre.highlight code'}))
+      .pipe(gulp.dest('build/docs/articles'))
+      .on('end', () => cb())
+});
 ----
 
-*Create sitemap*
+=== read-asciidoctor
+`read-asciidoctor` extension reads a stream of **asciidoc** files and builds HTML pages. 
+When there are code examples in **asciidoc** files, prism.js is used to highlight the language keywords.
+
+* a templateModel, a structure JSON used after with handlebar and
+* an indexData object  is used to build an index file that is  then processed by other extensions
+
+*Example of usage*
 [source,javascript]
 ----
-include::{code}gulpfile.js[tags=sitemap]
+gulp.task('adoc-template', () =>
+  gulp.src(`src/html/**/*.html`)
+      .pipe(website.readAsciidoc())
+      .pipe(website.convertToHtml())
+      .pipe(website.applyTemplate(`src/templates/articles.hbs`))
+      .pipe(gulp.dest('build/docs')));
 ----
 
-*Check that important files are present*
+The JSON templateModel has these values.
+
+* keywords : to provided in a metadata JSON
+* title : to provided in a metadata JSON
+* description : to provided in a metadata JSON
+* contents : read from the file in the stream
+* gendate : current instant
+* filename : name of the future page
+* dir : for asciidoc you can define your page in a subdirectory (usefull for articles with a subdirectory per year, or by topic)
+* category : to regroup elements
+* teaser: little teaser to introduce the page
+* imgteaser: image to use with this teaser (used to display page articles with all articles)
+* canonicalUrl : computed from the current file path
+* modedev : read in environment variables
+
+Pages created in AsciiWriter need to be in Asciidoc format and has to specify some metadata in their header:
+
+[source, asciidoc]
+----
+:doctitle: Publish Asciidoc Articles using Gulp
+:description: Asciidoctorjs based static site scaffold
+:keywords: Web, Articles, Asciidoc, Asciidoctor, Asciidoctorjs, Gulp, Nodejs
+:author: ojn
+:revdate: 2020-01-01
+:category: Web
+:teaser: Created with AsciiWriter and uses Asciidoc format.
+:imgteaser: ../../img/articles/2018/siteweb_00.jpg
+
+Start of your article
+----
+
+In your handlebar template you can use the templateModel property values. For example
+[source,html]
+----
+<html>
+    <head>
+        <title>{{ title }}</title>
+    </head>
+    <body>
+        <h1>{{ title }}</h1>
+        <p><small>{{category}}</small></p>
+        {{content}}
+    </body>
+</html>
+----
+
+=== read-html
+`read-html` extension reads a stream of HTML files and builds pages
+
+* a templateModel, a structure JSON used after with handlebar and
+* an indexData object used to build an index file used by other extensions
+
+*Use example*
 [source,javascript]
 ----
-include::{code}gulpfile.js[tags=check]
+gulp.task('html-template', () =>
+  gulp.src(`src/html/**/*.html`)
+      .pipe(website.readHtml())
+      .pipe(website.applyTemplate(`src/templates/articles.hbs`))
+      .pipe(gulp.dest('build/docs')));
 ----
 
-=== convert-to-html
-Used to change Asciidoc file extension to html
+The JSON templateModel has these values.
 
-*Example of no metadata*
+* keywords : to provided in a metadata JSON
+* title : to provided in a metadata JSON
+* description : to provided in a metadata JSON
+* contents : read from the file in the stream
+* gendate : current instant
+* canonicalUrl : computed from the current file path
+* modedev : read in environment variables
+
+Some elements cannot be deduced. You have to provide these informations in JSON structure. By default this module read `src/metadata/html.json`. You can override this property in the config sent to this module
+
 [source,javascript]
 ----
-include::{code}/ext/read-html.js[tags=no-metadata]
+const WEBSITE_PARAMS = {
+  metadata : {
+    html: 'src/metadata/html.json'
+  }
+};
+const website = require('./index')(WEBSITE_PARAMS);
 ----
 
-*Example of off sass include*
-[source,sass]
+This file has for example this content
+[source,json]
 ----
-include::{sass}/extra.scss[tags=section]
+{
+  "404.html" : {
+    "keywords": "Asciidoctor.js, Asciidoc, Node.js, Gulp, Static Site Generator",
+    "title": "404 there is no page here!",
+    "description" : "Page not found",
+    "priority": -1
+  },
+  "index.html" : {
+    "keywords": "Asciidoctor.js, Asciidoc, Node.js, Gulp, Static Site Generator",
+    "title": "AsciiWriter - a simple static site generator that uses asciidoc file format",
+    "description" : "AsciiWriter is a simple static site generator based on Asciidoctor.js, Gulp and Handlebars",
+    "priority": 0.8
+  }
+}
 ----
+
+In your handlebar template you can use the templateModel property values. 
+For example:
+
+[source,html]
+----
+<html>
+    <head>
+        <title>{{ title }}</title>
+    </head>
+    <body>
+        <h1>{{ title }}</h1>
+        {{content}}
+    </body>
+</html>
+----
+
+=== read-index
+`read-index` extension is used to parse a JSON file with metadata and send the content to another extension in file stream in gulp
+
+*Example of usage*
+[source,javascript]
+----
+gulp.task('articles-rss', () =>
+  gulp.src('build/.tmp/articlesindex.json')
+      .pipe(website.readIndex())
+      .pipe(website.convertToRss('articles.xml'))
+      .pipe(gulp.dest('build/docs/rss'))
+);
+----
+In this example Gulp takes an index written in Json and `read-index` helps to read the content and send it to another extension like `convert-to-rss` for example
+
+=== convert-to-articles-list
+TODO
+
+
+=== convert-to-articles-page
+TODO
+
+
+
+== Compatibility
+AsciiWriter uses
+
+* asciidoctor.js >= 2.0.0
+* gulp >= 4.0.0
+* node version >= 10.0
+
+== License
+AsciiWriter is released under the MIT license.

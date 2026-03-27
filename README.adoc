@@ -1,13 +1,10 @@
 = AsciiWriter static site generator scaffold based on Gulp.js
 
 AsciiWriter is not a full-fledged static site generator, it's a set of npm, JS, Gulpjs scripts that get you started with your own Asciidoctorjs based website. 
-There are plenty of static site generators.
-They are getting very popular in the techy world and most of them are using Markdown (simple rules to format text files).
-Even when taken into account how easy those are, it involves a certain workflow to setup and maintain.
-On the other hand there is a variety of simple markup languages that can do the most common tasks and range from BBcode to Org-mode.
+There are plenty of static site generators, most of them are using Markdown (simple rules to format text files).
+But there is a wide variety of simple markup languages that can do the most common tasks and range from BBcode to Org-mode.
 It seems difficult to strike correct balance of usability, features and remain human readable.
-The consistency of formatting is therefore very important.
-One such text markup type stands out as being superior and also easy to use.
+One such text markup language stands out as being consistant and also easy to use.
 This is of course Asciidoc!
 Originally developed in Python, it has been rediscovered by Ruby community and gained a lot of traction in its Asciidoctor reimplementation. 
 Asciidoctorjs is JS-version of it, AsciiWriter uses it to create html pages with Gulpjs.
@@ -73,7 +70,7 @@ Most of the settings are stored within link:./gulpfile.js[gulpfile.js]. If you e
 
 == Keeping the documentation up to date
 
-To keep the documentation current AsciiWriter mirrors the source files into ```src/articles/code```.
+To keep the documentation current AsciiWriter mirrors the source files into ```src/.code```.
 In the root of the file system there are 2 scripts awailable to keep it synchronized, on Windows ```code.bat``` uses Robocopy to mirror files. On Linux and Unix-like systems you also need install ```rsync``` to keep the files mirrored. 
 
 == AsciiDoc is awesome!

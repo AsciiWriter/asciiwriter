@@ -1,7 +1,7 @@
 = AsciiWriter static site generator
-:doctitle: test template
+:doctitle: apply template
 :language: en
-:description: Testing
+:description: Test
 :keywords: web, test
 :author: ojn
 :revdate: 2019-04-26
@@ -11,5 +11,6 @@
 :code: src/.code/
 :sass: src/sass/
 :src: src/
+:toc:
 
 Hello World

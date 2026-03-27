@@ -16,12 +16,10 @@
 
         {{{ contents }}}
 
-
-
-
   </div>
 
-<section>
+
+<section class=".bg-gray-light">
 
   <div class="d-flex flex-wrap flex-justify-around flex-content-around">
 
@@ -36,22 +34,25 @@
 </section>
 
 
-        </aw-section>
+        
     </div>
      </div> 
                 <div class="paginate-container">
-                    <span class="paginate-container paginate">
+                    <span class="paginate-container paginate ">
                     {{#previous}}
                         Previous article : <a
                             href="../{{dir}}/{{filename}}.html">{{doctitle}}</a><br>
                     {{/previous}}
                     </span>
+                </div>
+                <div class="paginate-container">
                     <span class="paginate-container paginate">
                     {{#next}}
                         Next article : <a href="../{{dir}}/{{filename}}.html">{{doctitle}}</a>
                     {{/next}}
                     </span>
                 </div>
+    <hr>
     {{> _page_footer}}
     {{> _html_footer}}
 </main>
